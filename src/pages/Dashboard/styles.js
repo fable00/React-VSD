@@ -48,11 +48,18 @@ export const Content = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: 8px;
 
         svg{
             margin-left: 8px;
-            
+            background-color: transparent;
         }
-    }
+        
+        transition: all 0.3s;
 
+        &:hover{
+            transform: scale(1.04);
+        }
+    
+    }
 `
