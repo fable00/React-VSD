@@ -40,7 +40,19 @@ export const Content = styled.div`
         width: 100%;
         height: 32px;
         margin-top: 16px;   
-        background: ${({theme})=> theme.};
+        background: ${({theme})=> theme.primary};
+        border: 0;
+        border-radius: 4px 4px;
+        font-weight: 500;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg{
+            margin-left: 8px;
+            
+        }
     }
 
 `
