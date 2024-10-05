@@ -1,12 +1,15 @@
 import { FaSearch } from "react-icons/fa"
-import { Container, Content } from "./styles"
+import { Container, Content, ContentLoader } from "./styles"
 import { useState } from "react"
 import { getUserDetails } from "../../api/github"
+import { LineWaveVSD } from "../../components/loaders/LineWaveVSD"
+import { useNavigate } from "react-router-dom"
 
 export const Dashboard = ()=>{
 
-    const {username, setUsername} = useState('')
-    const {loading, setLoading} = useState(false)
+    const [username, setUsername] = useState('')
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     function handleSetUser(event) {
         setUsername(event.target.value)
@@ -16,8 +19,10 @@ export const Dashboard = ()=>{
         try {
             setLoading(true)
             const result = await getUserDetails(username)
-            console.log(result)
-        } catch (error) {
+            
+            navigate('/repositories', {state: {profile: result}})
+
+        } catch(error) {
             console.error(error.message)
         } finally{
             setLoading(false)
@@ -32,8 +37,15 @@ export const Dashboard = ()=>{
                     <input type="text" id="nickname" placeholder="Digite aqui seu usuário"
                      onChange={handleSetUser}/>
                 </label>
-                <button>Buscar <FaSearch /></button>
+                <button type="button" onClick={()=> handleGetDetails()}>Buscar <FaSearch /></button>
             </Content>
+
+            {loading && (
+                <ContentLoader>
+                <LineWaveVSD />
+                </ContentLoader>
+            )}
+            
         </Container>
     )
 }

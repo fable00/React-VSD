@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import axios from "axios";
 
 const githubApi = axios.create({
   baseUrl: "https://api.github.com"

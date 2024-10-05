@@ -3,6 +3,8 @@ import GlobalStyles from './styles/GlobalStyles'
 import { Dashboard } from './pages/Dashboard'
 import { ThemeProvider } from "styled-components";
 import dark from './styles/themes/dark';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRoutes } from './routes/AppRoutes';
 
 export function App() {
 
@@ -10,7 +12,9 @@ export function App() {
     <>
       <ThemeProvider theme={dark}>
         <GlobalStyles />
-        <Dashboard />
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
       </ThemeProvider>
     </>
   )
